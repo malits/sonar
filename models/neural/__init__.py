@@ -16,7 +16,7 @@ not_stops = ["but", "very", "most", "nor", "no", "against"]
 for stop in not_stops:
     STOPWORDS.remove(stop)
 
-ctions = { 
+actions = { 
         "ain't": "am not / are not / is not / has not / have not",
         "aren't": "are not / am not",
         "can't": "cannot",
@@ -147,4 +147,39 @@ class SentimentAnalyzer:
         self.tfidf = pkl.load(open("data/tfidf_lookup00.pkl", "rb"))
         self.tokenizer = pkl.load(open("data/tweet_tokenizer00.pkl", "rb"))
 
-    
+    def tokenize(self, tweet):
+        sub_regex = r'(#[A-Za-z0-9])|(https)\?!\.,'
+        tweet = str(tweet)
+        tokens = self.tokenizer.tokenize(tweet)
+        tokens = [re.sub(sub_regex, '', t) for t in tokens]
+        tokens = [t.lower() for t in tokens if t is not None and t != '')]
+        tokens = [self.expand_contractions(t) for t in tokens]
+        tokens = [t for t in tokens if t not in STOPWORDS]
+        return tokens
+
+    def create_tweet_vector(self, words):
+        try:
+            return contractions[text]
+        except KeyError:
+            return text
+
+    def create_tweet_vector(self, wors):
+        vector = np.zeros((1, self.ndims))
+        count = 0
+
+        for w in words:
+            try:
+                vector += self.word2vec.wv[w].reshape((1, self.ndims)) * self.tfidf[w]
+                count += 1
+            except KeyError:
+                continue
+
+        if count != 0:
+            return np.divide(vector, count)
+        else:
+            return vector
+
+    def predict_sentiment(self, texts):
+        texts = [self.tokenize(text) for text in texts]
+        tweet_vectors = np.concatenate([self.create_tweet_vectors(text) for text in texts])
+        return self.classifier.predict(tweet_vectors)
