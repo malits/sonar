@@ -23,11 +23,11 @@ def create_app(test_config=None):
         # GET request
         elif request.method == "GET":
             return jsonify({
-                "test": "test",
+                "score": 100,
             })
 
     @app.route('/', methods=["POST", "GET"])
     def hello():
-        return render_template("index.html", score=3)
+        return render_template("index.html")
 
     return app

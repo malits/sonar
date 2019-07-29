@@ -1,6 +1,6 @@
 $(document).ready( function() {
 
-  var user_msg = {"message": "This is a test."}
+  var user_msg = {"message": "Today was so bad!"}
 
   $("#submit").click( function() {
     send_post_request(user_msg);
@@ -20,15 +20,15 @@ function send_post_request(data) {
     data: JSON.stringify(data),
 
     complete: function() {
-      console.log("finished")
+      console.log("Finished attempting POST request...")
     },
 
     success: function() {
-      console.log("Success!")
+      console.log("Successful POST request!")
     },
 
     error: function() {
-      console.log("error")
+      console.log("Error in POST request")
     },
   });
 }
@@ -39,17 +39,17 @@ function send_get_request() {
     dataType: "json",
 
     complete: function() {
-      console.log("Done")
+      console.log("Finished attempting GET request...")
     },
 
     success: function() {
-      console.log("success")
+      console.log("Successful GET request!")
     },
 
     error: function() {
-      console.log("error")
+      console.log("Error in GET request")
     },
-  }).done(function (test) {
-    $('#test_span').text(test.test);
+  }).done(function (res) {
+    $('#test_span').text(res.score);
   });
 }
