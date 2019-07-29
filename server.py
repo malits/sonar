@@ -17,13 +17,14 @@ def create_app(test_config=None):
         if request.method == "POST":
             print(request.content_type)
             data = request.get_json()
-            print(data['myData'])
+            print(data['message'])
             return 'OK', 200
 
         # GET request
         elif request.method == "GET":
-            print("GET request")
-            return 'OK', 200
+            return jsonify({
+                "test": "test",
+            })
 
     @app.route('/', methods=["POST", "GET"])
     def hello():
