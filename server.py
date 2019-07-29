@@ -15,15 +15,15 @@ def create_app(test_config=None):
 
         # POST request
         if request.method == "POST":
-            print('POST request')
-            print(request.get_json())
+            print(request.content_type)
+            data = request.get_json()
+            print(data['myData'])
             return 'OK', 200
 
         # GET request
         elif request.method == "GET":
             print("GET request")
-            message = {"test": "This is a test response"}
-            return jsonify(message)
+            return 'OK', 200
 
     @app.route('/', methods=["POST", "GET"])
     def hello():
