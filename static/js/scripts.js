@@ -13,7 +13,7 @@ $(document).ready( function() {
 
 function send_post_request(data) {
   $.ajax({
-    url: "test",
+    url: "send_message",
     type: "POST",
     dataType: "text",
     contentType: "application/json",
@@ -35,14 +35,15 @@ function send_post_request(data) {
 
 function send_get_request() {
   $.ajax({
-    url: "test",
+    url: "get_probability",
     dataType: "json",
 
     complete: function() {
       console.log("Finished attempting GET request...")
     },
 
-    success: function() {
+    success: function(res) {
+      console.log(res);
       console.log("Successful GET request!")
     },
 

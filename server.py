@@ -1,14 +1,11 @@
 from flask import Flask, jsonify, request, render_template
+from model_handler import ModelHandler
 
 
-def create_app(test_config=None):
+def create_app():
     app = Flask(__name__, instance_relative_config=False)
 
-    if test_config is None:
-        # instance config with user data
-        app.config.from_pyfile('config.py', silent=True)
-    else:
-        app.config.from_mapping(test_config)
+    handler = ModelHandler()
 
     @app.route('/test', methods=["POST", "GET"])
     def process_request():
@@ -23,11 +20,20 @@ def create_app(test_config=None):
         # GET request
         elif request.method == "GET":
             return jsonify({
-                "score": 100,
+                "score": handler.predict_sentiment(data["message"]),
             })
 
-    @app.route('/', methods=["POST", "GET"])
+    @app.route('/')
     def hello():
         return render_template("index.html")
+
+    @app.route('/send_message', methods=["POST"])
+    def process_message():
+        data = request.get_json()
+        handler.predict_sentiment(data["message"])
+
+    @app.route('/get_probability')
+    def get_probability():
+        return str(handler.get_prob())
 
     return app

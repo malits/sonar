@@ -202,6 +202,7 @@ class SentimentAnalyzer:
         else:
             return vector
 
+    # TODO: refactor params here
     def predict_sentiment(self, texts: [str]) -> np.array:
         '''
         :param texts: Array of texts
