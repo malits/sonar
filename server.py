@@ -40,8 +40,8 @@ def predict():
     with graph.as_default():
         data = request.get_json()
         message = data["message"]
-        print(message)
-        return str(model.predict_sentiment([message]))[0][0]
+        response = {"prob": str(model.predict_sentiment([message])[0][0])}
+        return jsonify(response)
 
 
 if __name__ == '__main__':

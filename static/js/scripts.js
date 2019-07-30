@@ -1,8 +1,10 @@
 $(document).ready( function() {
 
-  var user_msg = {"message": "Today was so bad!"}
-
   $("#submit").click( function() {
+
+    var input_msg = $("#msg_input").val()
+    var user_msg = {"message": input_msg}
+
     predict(user_msg);
   });
 });
@@ -11,7 +13,7 @@ function predict(data) {
   $.ajax({
     url: "predict",
     type: "POST",
-    dataType: "text",
+    dataType: "json",
     contentType: "application/json",
     data: JSON.stringify(data),
 
@@ -19,8 +21,9 @@ function predict(data) {
       console.log("Finished attempting POST request...")
     },
 
-    success: function(data) {
+    success: function(res) {
       console.log(data)
+      $("#test_span").text(res.prob)
     },
 
     error: function() {
