@@ -19,8 +19,8 @@ function predict(data) {
       console.log("Finished attempting POST request...")
     },
 
-    success: function() {
-      console.log("Successful POST request!")
+    success: function(data) {
+      console.log(data)
     },
 
     error: function() {

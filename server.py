@@ -1,14 +1,15 @@
 from flask import Flask, jsonify, request, render_template
 import tensorflow as tf
 
-from model_handler import ModelHandler
+from models.neural import SentimentAnalyzer
 
 app = Flask(__name__, instance_relative_config=False)
 
 
 def load_model():
-    global handler
-    handler = ModelHandler()
+    global model
+    model = SentimentAnalyzer()
+    model.load_model()
 
 
 @app.route('/test', methods=["POST", "GET"])
@@ -33,12 +34,18 @@ def hello():
     return render_template("index.html")
 
 
-@app.route('/predict')
+@app.route('/predict', methods=["POST", "GET"])
 def predict():
-    data = request.get_json()
-    return handler.predict_sentiment(data["message"])
+    global graph
+    with graph.as_default():
+        data = request.get_json()
+        message = data["message"]
+        print(message)
+        return str(model.predict_sentiment([message]))[0][0]
 
 
 if __name__ == '__main__':
     load_model()
+    graph = tf.get_default_graph()
+
     app.run()
