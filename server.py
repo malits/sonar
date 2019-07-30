@@ -6,6 +6,11 @@ from model_handler import ModelHandler
 app = Flask(__name__, instance_relative_config=False)
 
 
+def load_model():
+    global handler
+    handler = ModelHandler()
+
+
 @app.route('/test', methods=["POST", "GET"])
 def process_request():
 
@@ -28,22 +33,12 @@ def hello():
     return render_template("index.html")
 
 
-@app.route('/send_message', methods=["POST"])
-def process_message():
-    global graph
-    with graph.as_default():
-        data = request.get_json()
-        handler.predict_sentiment(data["message"])
-        return 'OK', 200
-
-
-@app.route('/get_probability')
-def get_probability():
-    return str(handler.get_prob())
+@app.route('/predict')
+def predict():
+    data = request.get_json()
+    return handler.predict_sentiment(data["message"])
 
 
 if __name__ == '__main__':
-    global handler
-    handler = ModelHandler()
-    graph = tf.get_default_graph()
+    load_model()
     app.run()

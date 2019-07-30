@@ -15,6 +15,7 @@ class ModelHandler:
     def predict_sentiment(self, text):
         backend.clear_session()
         self.prob = self.model.predict_sentiment([text])[0][0]
+        return self.prob
 
     def get_prob(self):
         return self.prob
