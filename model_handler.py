@@ -1,4 +1,5 @@
 from models.neural import SentimentAnalyzer
+from keras import backend
 
 
 class ModelHandler:
@@ -12,7 +13,8 @@ class ModelHandler:
         self.prob = 0
 
     def predict_sentiment(self, text):
-        self.prob = self.model.predict_sentiment([text])[0, 0]
+        backend.clear_session()
+        self.prob = self.model.predict_sentiment([text])[0][0]
 
     def get_prob(self):
         return self.prob
