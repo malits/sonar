@@ -22,7 +22,7 @@ function predict(data) {
     },
 
     success: function(res) {
-      console.log(data)
+      console.log(res)
       $("#test_span").text(res.prob)
     },
 
