@@ -42,7 +42,7 @@ def predict():
         data = request.get_json()
         message = data["message"]
         prob = str(model.predict_sentiment([message])[0][0])
-        recs = str(get_recs(prob))
+        recs = get_recs(prob)
 
         response = {"prob": prob, "recs": recs}
 

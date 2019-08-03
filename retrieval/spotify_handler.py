@@ -36,5 +36,5 @@ def get_recs(valence):
                                          limit=5,
                                          target_valence=valence)
 
-    items = recommendations
+    items = json.dumps(recommendations)
     return items
