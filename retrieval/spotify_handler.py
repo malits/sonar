@@ -1,5 +1,3 @@
-import json
-
 import spotipy
 import spotipy.util as util
 
@@ -18,7 +16,7 @@ def gather_uri(content):
 
 
 def get_recs(valence):
-    token = util.prompt_for_user_token(secret.username, scope,
+    token = util.prompt_for_user_token('', scope,
                                        secret.CLIENT_ID, secret.CLIENT_SECRET,
                                        secret.REDIRECT)
     sp = spotipy.Spotify(token)

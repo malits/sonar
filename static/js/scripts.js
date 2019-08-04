@@ -1,5 +1,10 @@
 $(document).ready( function() {
 
+  var images = new Array('../img/band.jpg', '../img/club.jpg',
+                         '../img/disco.jpg', '../img/records.jpg',
+                         '../img/stereo.jpg');
+  var nextimage = 0;
+
   $("#submit").click( function() {
 
     var input_msg = $("#msg_input").val()
