@@ -1,17 +1,24 @@
 <html>
   <head>
+    <style>
+      @import url('https://fonts.googleapis.com/css?family=Oswald&display=swap');
+    </style>
     <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='styles/main.css') }}">
   </head>
   <body>
+    <div class="slideshow"></div>
+    <header>
+      <div class="heading">
+        <h1 class="title">SONAR</h1>
+        <h2 class="subtitle">Emotionally Intelligent Music Recommendations</h2>
+      </div>
+    </header>
     <main>
-      <div class="slideshow"></div>
       <div class = "content">
-        <div class="heading">
-          <h1 class="title">S O N A R</h1>
-          <h2 class="subtitle">Emotionally Intelligent Music Recommendations</h2>
+        <div class="Input">
+          <input type="textbox" value="Input" id="msg_input"></input>
+          <button id="submit">Submit</button>
         </div>
-        <input type="textbox" value="Input" id="msg_input"></input>
-        <button id="submit">Submit</button>
         <br>
         <div id="tracks"></div>
       </div>
