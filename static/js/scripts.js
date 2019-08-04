@@ -22,7 +22,6 @@ function predict(data) {
     },
 
     success: function(res) {
-      console.log(res.prob)
       tracks = assemble_tracks(res.recs)
       show_tracks(tracks)
     },
@@ -35,12 +34,11 @@ function predict(data) {
 
 function assemble_tracks(data) {
   //console.log(JSON.parse(data))
-  //var parsed_data = JSON.parse(data)
-  console.log(data)
+  var parsed_data = JSON.parse(data)
 
   var tracks = []
 
-  for (item of data.tracks) {
+  for (item of parsed_data.tracks) {
     var artist_name = item.artists[0].name
     var track_name = item.name
 

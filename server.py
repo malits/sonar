@@ -46,7 +46,7 @@ def predict():
 
         response = {"prob": prob, "recs": recs}
 
-        return jsonify(response)
+        return response
 
 
 if __name__ == '__main__':
