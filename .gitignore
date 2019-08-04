@@ -8,3 +8,9 @@
 secret.py
 
 .cache-maxlitster
+
+static/img/
+node_modules/
+
+package-lock.json
+package.json

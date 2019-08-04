@@ -1,0 +1,13 @@
+body {
+  text-align: center;
+  font-size: 18px;
+}
+
+.heading {
+  font-family: 'Roboto', sans-serif;
+}
+
+.title {
+  letter-spacing: 0.3em;
+  font-size: 3rem;
+}
