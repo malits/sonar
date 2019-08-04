@@ -22,6 +22,7 @@ function predict(data) {
     },
 
     success: function(res) {
+      clear_tracks()
       tracks = assemble_tracks(res.recs)
       show_tracks(tracks)
     },
@@ -34,16 +35,20 @@ function predict(data) {
 
 function assemble_tracks(data) {
   //console.log(JSON.parse(data))
-  var parsed_data = JSON.parse(data)
 
+  console.log(data.tracks)
   var tracks = []
 
-  for (item of parsed_data.tracks) {
+  for (item of data.tracks) {
     var artist_name = item.artists[0].name
+    var img = item.album.images[1]
+    var img_src = img.url
+    var h = img.height
+    var w = img.width
     var track_name = item.name
 
     var track_text = artist_name + " - " + track_name
-    tracks.push(track_text)
+    tracks.push({"text": track_text, "src": img_src, "h": h, "w": w})
   }
 
   return tracks
@@ -54,8 +59,28 @@ function show_tracks(tracks) {
   var track_str = ""
 
   for (t of tracks) {
-    track_str = track_str + "\n" + t
+    insert_image(t.src, t.text)
   }
+}
 
-  $("#test_span").text(track_str)
+function insert_image(src, text, h, w) {
+  var br = document.createElement("br");
+  var img = document.createElement("img");
+  var track_text = document.createTextNode(text);
+  var div = document.createElement("div");
+
+  img.src = src;
+
+  div.appendChild(img);
+  div.appendChild(br);
+  div.appendChild(track_text);
+
+  document.getElementById("tracks").appendChild(div);
+}
+
+function clear_tracks() {
+  var tracks = document.getElementById("tracks");
+  while (tracks.firstChild) {
+      tracks.removeChild(tracks.firstChild);
+  }
 }
