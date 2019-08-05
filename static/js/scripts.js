@@ -1,4 +1,5 @@
 $(document).ready( function() {
+
   $("#submit").click( function() {
 
     var input_msg = $("#msg_input").val()
@@ -7,19 +8,6 @@ $(document).ready( function() {
     predict(user_msg);
   });
 });
-
-function slideshow() {
-  function nextSlide() {
-    slides[currentSlide].className = 'slideshow';
-    currentSlide = (currentSlide + 1) % slides.length;
-    slides[currentSlide].classname = 'slideshow showing';
-  }
-
-  var currentSlide = 0;
-  var slides = document.querySelectorAll("#slides .slideshow");
-  var slideInterval = setInterval(nextSlide, 2000);
-
-}
 
 function predict(data) {
   $.ajax({
