@@ -1,5 +1,7 @@
 body {
 
+  color: white;
+
   font-size: 18px;
 
   text-align: center;
@@ -15,7 +17,7 @@ body {
 
   font-family: 'Oswald', sans-serif;
 
-  text-shadow: 1px 1px 1px black;
+  text-shadow: 0.1rem 0.1rem 0.1rem black;
 
 }
 
@@ -33,7 +35,7 @@ body {
       rgba(0, 0, 0, 0.5)
       ),
 
-    url("../img/disco.jpg");
+    url("../img/club.jpg");
 
   background-position: center;
   background-repeat: no-repeat;
@@ -62,17 +64,32 @@ body {
   font-family: 'Roboto', sans-serif;
 }
 
-#msg_input {
-  border: 2px grey;
-
-  padding: 10px 64px;
-}
+/*TODO: convert pixels to ems */
 
 #submit {
-  background-color: grey;
-  border: 2px;
-  color: white;
-  padding: 10px 32px;
-  text-align: center;
-  text-decoration: none;
+  display:inline-block;
+  padding:0.35em 1.2em;
+  border:0.1em solid #FFFFFF;
+  margin:0 0.3em 0.3em 0;
+  border-radius:0.12em;
+  box-sizing:border-box;
+  text-decoration:none;
+  font-family:'Roboto',sans-serif;
+  font-weight:300;
+  background-color: rgba(0, 0, 0, 0);
+  color:#FFFFFF;
+  text-align:center;
+  transition: all 0.2s;
+}
+
+#submit:hover {
+  color:#000000;
+  background-color:#FFFFFF;
+}
+
+@media all and (max-width:30em){
+  #submit{
+    display:block;
+    margin:0.4em auto;
+  }
 }
