@@ -45,12 +45,10 @@ input {
 }
 
 .slide {
-  background-image:
-    linear-gradient(
-      rgba(0, 0, 0, 0.5),
-      rgba(0, 0, 0, 0.5)
-      ),
-    url('../img/club.jpg');
+  width:100vw;
+  height:100vh;
+  top:0px;
+  left:0px;
 
   background-position: center;
   background-repeat: no-repeat;
@@ -60,19 +58,68 @@ input {
   -o-background-size: cover;
   background-size: cover;
 
+  animation: slideBg 5s linear infinite 0s;
+  animation-timing-function: 1s ease-in-out 0s;
+  -webkit-animation-timing-function: 1s ease-in-out 0s;
+
+  background-image:
+    linear-gradient(
+      rgba(0, 0, 0, 0.5),
+      rgba(0, 0, 0, 0.5)
+      ),
+    url('../img/club.jpg');
+
   filter: blur(6px);
   -webkit-filter: blur(6px);
 
   position: fixed;
 
-  width:100vw;
-  height:100vh;
-  top:0px;
-  left:0px;
-
   z-index: -1;
 
   transform: scale(1.1);
+}
+
+@keyframes slideBg {
+  0% {
+    background-image:
+      linear-gradient(
+        rgba(0, 0, 0, 0.5),
+        rgba(0, 0, 0, 0.5)
+        ),
+      url('../img/club.jpg');
+  }
+  25% {
+    background-image:
+      linear-gradient(
+        rgba(0, 0, 0, 0.5),
+        rgba(0, 0, 0, 0.5)
+        ),
+      url('../img/band.jpg');
+  }
+  50% {
+    background-image:
+      linear-gradient(
+        rgba(0, 0, 0, 0.5),
+        rgba(0, 0, 0, 0.5)
+        ),
+      url('../img/disco.jpg');
+  }
+  75% {
+    background-image:
+      linear-gradient(
+        rgba(0, 0, 0, 0.5),
+        rgba(0, 0, 0, 0.5)
+        ),
+      url('../img/records.jpg');
+  }
+  100% {
+    background-image:
+      linear-gradient(
+        rgba(0, 0, 0, 0.5),
+        rgba(0, 0, 0, 0.5)
+        ),
+      url('../img/stereo.jpg');
+  }
 }
 
 .wrapper {
