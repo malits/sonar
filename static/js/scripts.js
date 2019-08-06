@@ -22,9 +22,10 @@ function predict(data) {
     },
 
     success: function(res) {
-      clear_tracks()
-      tracks = assemble_tracks(res.recs)
-      show_tracks(tracks)
+      //clear_tracks()
+      console.log(res.recs)
+      //tracks = assemble_tracks(res.recs)
+      //show_tracks(tracks)
     },
 
     error: function() {
