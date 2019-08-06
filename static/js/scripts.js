@@ -24,6 +24,7 @@ function predict(data) {
     success: function(res) {
       //clear_tracks()
       console.log(res.recs)
+      show_playlist(res.recs)
       //tracks = assemble_tracks(res.recs)
       //show_tracks(tracks)
     },
@@ -32,6 +33,22 @@ function predict(data) {
       console.log("Error in POST request")
     },
   });
+}
+
+function show_playlist(playlist) {
+  var tracks = document.getElementById("tracks");
+
+  var id = playlist.id;
+  var src_link = "https://open.spotify.com/embed/playlist/" + id
+
+  $("<iframe>", {
+    src: src_link,
+    width: 300,
+    height: 380,
+    frameborder: 0,
+    allowtransparecy: "true",
+    allow: "encrypted-media"
+  }).appendTo(tracks)
 }
 
 function assemble_tracks(data) {
