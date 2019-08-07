@@ -31,6 +31,8 @@ input {
 }
 
 .heading {
+  animation: 5s ease-out 0s 1 fadeIn;
+
   color: white;
 
   font-family: 'Oswald', sans-serif;
@@ -44,11 +46,21 @@ input {
 
 }
 
-.slide {
+.playlist-frame {
+  border: solid;
+  border-width: 2px;
+  border-color: white;
+
+  border-radius: 0.12em;
+}
+
+.slide > figure {
   width:100%;
   height:100vh;
   top: 0px;
   left: 0px;
+
+  backface-visibility: hidden;
 
   background-repeat: no-repeat;
   backface-visibility: hidden;
@@ -58,9 +70,9 @@ input {
   -o-background-size: cover;
   background-size: cover;
 
-  animation: slideBg 8s linear infinite 0s alternate;
-  animation-timing-function: 1s ease-in-out 0s;
-  -webkit-animation-timing-function: 1s ease-in-out 0s;
+  animation: imageAnimation 30s linear infinite 0s;
+  /*animation-timing-function: 1s ease-in-out 0s;
+  -webkit-animation-timing-function: 1s ease-in-out 0s;*/
 
   background-image:
     linear-gradient(
@@ -77,50 +89,6 @@ input {
   z-index: -1;
 
   transform: scale(1.1);
-
-}
-
-@keyframes slideBg {
-  0% {
-    background-image:
-      linear-gradient(
-        rgba(0, 0, 0, 0.5),
-        rgba(0, 0, 0, 0.5)
-        ),
-      url('../img/club.jpg');
-  }
-  25% {
-    background-image:
-      linear-gradient(
-        rgba(0, 0, 0, 0.5),
-        rgba(0, 0, 0, 0.5)
-        ),
-      url('../img/band.jpg');
-  }
-  50% {
-    background-image:
-      linear-gradient(
-        rgba(0, 0, 0, 0.5),
-        rgba(0, 0, 0, 0.5)
-        ),
-      url('../img/disco.jpg');
-  }
-  75% {
-    background-image:
-      linear-gradient(
-        rgba(0, 0, 0, 0.5),
-        rgba(0, 0, 0, 0.5)
-        ),
-      url('../img/records.jpg');
-  }
-  100% {
-    background-image:
-      linear-gradient(
-        rgba(0, 0, 0, 0.5),
-        rgba(0, 0, 0, 0.5)
-        ),
-      url('../img/stereo.jpg');
-  }
 }
 
 .wrapper {
@@ -137,9 +105,10 @@ input {
 }
 
 #msg_input {
+  animation: hstretch 5s linear forwards;
+
   display: inline-block;
   margin: 0 .25rem;
-  min-width: 125px;
 
   min-height: 2em;
   width: 50em;
@@ -158,6 +127,8 @@ input {
 }
 
 #submit {
+  animation: button-stretch 10s linear forwards;
+
   display:inline-block;
   padding:0.35em 1.2em;
   border:0.1em solid #FFFFFF;
@@ -171,6 +142,7 @@ input {
   color:#FFFFFF;
   text-align:center;
   transition: all 0.2s;
+
 }
 
 #submit:hover {
@@ -182,5 +154,43 @@ input {
   #submit{
     display:block;
     margin:0.4em auto;
+  }
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  } 30% {
+    opacity: 0;
+  } 80% {
+    opacity: 0.6;
+  }100% {
+    opacity: 1;
+  }
+}
+
+@keyframes hstretch {
+  0% {
+    opacity: 0;
+    width: 0em;
+  } 50% {
+    opacity: 0;
+    width: 0em;
+  } 50.5% {
+    opacity: 1;
+  } 100% {
+    width: 35em;
+  }
+}
+
+@keyframes button-stretch {
+  0% {
+    opacity: 0;
+  } 50% {
+    opacity: 0;
+  } 80% {
+    opacity: 1;
+  } 100% {
+    opacity: 1;
   }
 }

@@ -22,11 +22,10 @@ function predict(data) {
     },
 
     success: function(res) {
-      //clear_tracks()
+      $("#msg_input").val('')
+      clear_tracks()
       console.log(res.recs)
       show_playlist(res.recs)
-      //tracks = assemble_tracks(res.recs)
-      //show_tracks(tracks)
     },
 
     error: function() {
@@ -47,7 +46,8 @@ function show_playlist(playlist) {
     height: 380,
     frameborder: 0,
     allowtransparecy: "true",
-    allow: "encrypted-media"
+    allow: "encrypted-media",
+    class: "playlist-frame"
   }).appendTo(tracks)
 }
 
