@@ -1,3 +1,5 @@
+import datetime
+
 import spotipy
 import spotipy.util as util
 
@@ -20,7 +22,7 @@ def gather_uri(content, key='items'):
     return uris
 
 
-def get_recs(prob):
+def get_recs(prob, msg):
     token = util.prompt_for_user_token('', scope,
                                        secret.CLIENT_ID, secret.CLIENT_SECRET,
                                        secret.REDIRECT)
@@ -48,7 +50,7 @@ def get_recs(prob):
 
     recommendation_uris = gather_uri(recommendations, key='tracks')
 
-    playlist_name = "SONAR_ID"
+    playlist_name = f"SONAR_PLAYLIST: {datetime.date.today()}"
     get_last_playlist = lambda: sp.user_playlists(user_id, limit=1)['items'][0]
 
     curr_last_playlist = get_last_playlist()
@@ -58,8 +60,12 @@ def get_recs(prob):
                                         recommendation_uris)
     else:
         sp.user_playlist_create(user_id, playlist_name)
+        curr_last_playlist = get_last_playlist()
         sp.user_playlist_add_tracks(user_id, curr_last_playlist['id'],
                                     recommendation_uris)
+
+    sp.user_playlist_change_details(user_id, curr_last_playlist['id'],
+                                    description="test")
 
     new_last_playlist = get_last_playlist()
 

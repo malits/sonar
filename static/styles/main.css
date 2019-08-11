@@ -104,6 +104,19 @@ input {
   z-index: 1;
 }
 
+.spinner {
+  border: 0.5em solid #888888;
+  border-top: 0.5em solid #FFFFFF;
+  border-radius: 50%;
+  
+  width: 4em;
+  height: 4em;
+
+  animation: spin 2s linear infinite; 
+
+  text-align: center;
+}
+
 #msg_input {
   animation: hstretch 5s linear forwards;
 
@@ -193,4 +206,9 @@ input {
   } 100% {
     opacity: 1;
   }
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
 }
