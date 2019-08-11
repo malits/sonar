@@ -20,7 +20,7 @@ def gather_uri(content, key='items'):
     return uris
 
 
-def get_recs(valence):
+def get_recs(prob):
     token = util.prompt_for_user_token('', scope,
                                        secret.CLIENT_ID, secret.CLIENT_SECRET,
                                        secret.REDIRECT)
@@ -30,17 +30,21 @@ def get_recs(valence):
     user_id = user['id']
 
     user_artists = sp.current_user_top_artists(limit=1,
-                                               time_range='short_term')
+                                               time_range='long_term')
     user_tracks = sp.current_user_top_tracks(limit=1,
-                                             time_range='short_term')
+                                             time_range='long_term')
 
     seed_artists = gather_uri(user_artists)
     seed_tracks = gather_uri(user_tracks)
 
+    target_tempo = max(70, 170 * float(prob))
+
     recommendations = sp.recommendations(seed_artists=seed_artists,
                                          seed_tracks=seed_tracks,
                                          limit=5,
-                                         target_valence=valence)
+                                         target_valence=prob,
+                                         target_danceability=prob,
+                                         target_energy=prob)
 
     recommendation_uris = gather_uri(recommendations, key='tracks')
 
